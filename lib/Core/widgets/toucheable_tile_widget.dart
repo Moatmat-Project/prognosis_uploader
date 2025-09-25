@@ -33,7 +33,7 @@ class TouchableTileWidget extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             boxShadow: ShadowsResources.mainBoxShadow,
-            color: ColorsResources.onPrimary,
+            color: Color(0xFFF1F9F3),
           ),
           child: Material(
             borderRadius: BorderRadius.circular(12),
