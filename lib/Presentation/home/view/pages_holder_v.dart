@@ -42,8 +42,29 @@ class _PagesHolderViewState extends State<PagesHolderView> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           await Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => const AddBankView(),
+            PageRouteBuilder(
+              pageBuilder: (context, animation, secondaryAnimation) => const AddBankView(),
+              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                final slide = Tween<Offset>(
+                  begin: const Offset(0.0, 0.1),
+                  end: Offset.zero,
+                ).chain(CurveTween(curve: Curves.easeOutCubic)).animate(animation);
+
+                final fade = CurvedAnimation(
+                  parent: animation,
+                  curve: Curves.easeOut,
+                );
+
+                return FadeTransition(
+                  opacity: fade,
+                  child: SlideTransition(
+                    position: slide,
+                    child: child,
+                  ),
+                );
+              },
+              transitionDuration: const Duration(milliseconds: 250),
+              reverseTransitionDuration: const Duration(milliseconds: 200),
             ),
           );
           FocusManager.instance.primaryFocus?.unfocus();
