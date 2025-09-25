@@ -15,6 +15,7 @@ class TouchableTileWidget extends StatelessWidget {
     this.subTitle,
     this.subTitle2,
     this.icon,
+    this.color,
   });
   final String title;
   final String? subTitle;
@@ -22,6 +23,7 @@ class TouchableTileWidget extends StatelessWidget {
   final IconData? iconData;
   final Widget? icon;
   final void Function()? onTap;
+  final Color? color;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -33,7 +35,7 @@ class TouchableTileWidget extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             boxShadow: ShadowsResources.mainBoxShadow,
-            color: Color(0xFFF1F9F3),
+            color: ColorsResources.tailColor,
           ),
           child: Material(
             borderRadius: BorderRadius.circular(12),
@@ -84,7 +86,7 @@ class TouchableTileWidget extends StatelessWidget {
                     ),
                     Icon(
                       iconData,
-                      color: ColorsResources.blackText2,
+                      color: color,
                       size: 12,
                     ),
                     if (icon != null) icon!,

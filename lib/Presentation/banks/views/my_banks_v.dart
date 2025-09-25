@@ -38,7 +38,8 @@ class _MyBanksViewState extends State<MyBanksView> {
               onRefresh: () async {
                 context.read<MyBanksCubit>().update();
               },
-              child: ListView.builder(
+              child:
+               state.banks.isEmpty ? const Center(child: Text("لا يوجد بنوك")) : ListView.builder(
              padding: const EdgeInsets.only(bottom: 100),
                 itemCount: state.banks.length,
                 itemBuilder: (context, index) => BankTileWidget(

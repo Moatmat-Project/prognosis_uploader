@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moatmat_uploader/Core/resources/colors_r.dart';
 import 'package:moatmat_uploader/Features/banks/domain/entities/bank.dart';
 import 'package:moatmat_uploader/Presentation/banks/state/my_banks/my_banks_cubit.dart';
 import 'package:moatmat_uploader/Presentation/banks/views/add_bank_view.dart';
@@ -56,6 +57,7 @@ class _BankDetailsViewState extends State<BankDetailsView> {
                   TouchableTileWidget(
                     title: "تعديل",
                     iconData: Icons.edit,
+                    color: ColorsResources.blueText,
                     onTap: () async {
                       if (locator<TeacherData>().options.allowUpdate) {
                         //
@@ -81,6 +83,7 @@ class _BankDetailsViewState extends State<BankDetailsView> {
                   TouchableTileWidget(
                     title: "إضافة البنك إلى مجلد",
                     iconData: Icons.folder,
+                    color: Colors.yellow,
                     onTap: () async {
                       if (locator<TeacherData>().options.allowUpdate) {
                         //
@@ -105,6 +108,7 @@ class _BankDetailsViewState extends State<BankDetailsView> {
                   TouchableTileWidget(
                     title: "حذف",
                     iconData: Icons.delete,
+                    color: Colors.red,
                     onTap: () {
                       if (locator<TeacherData>().options.allowDelete) {
                         showAlert(

@@ -4,6 +4,7 @@ class ColorsResources {
   static const Color primary = Color(0xFF39B843);
   static const Color onPrimary = Colors.white;
   static const Color darkPrimary = Color(0xFF338839);
+  static const Color tailColor = Color( 0xFFF1F9F3) ;
   //
   static const Color blackText1 = Color(0xff1E1E1E);
   static const Color blackText2 = Color(0xff4D4D4D);
