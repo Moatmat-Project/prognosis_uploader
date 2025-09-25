@@ -33,7 +33,7 @@ class AppBarTitles {
   static const updateTeacherData = "تحديث بيانات المستخدم";
   static const pickClass = "اختيار الصف";
   static const pickTeacher = "اختر مدرس";
-  static const pickBank = "بنوك ";
+  static const pickBank = "البنوك";
   static const pickTest = "اختبارات الكترونية ";
   static const settingUpBank = "اعدادات بنك الأسئلة";
   static const result = "نتيجة الإختبار";

@@ -30,7 +30,7 @@ class _MaterialPickerViewState extends State<MaterialPickerView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(AppBarTitles.materialPicker),
+        title: const Text(AppBarTitles.pickBank),
         actions: [
           NotificationsIconWidget(),
           if (widget.onSearch != null)
