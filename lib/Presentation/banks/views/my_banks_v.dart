@@ -48,6 +48,7 @@ class _MyBanksViewState extends State<MyBanksView> {
                     await Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => BankDetailsView(
+                          
                           bank: state.banks[index],
                         ),
                       ),

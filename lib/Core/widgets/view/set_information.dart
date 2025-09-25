@@ -1,9 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:moatmat_uploader/Core/constant/classes_list.dart';
-import 'package:moatmat_uploader/Core/constant/materials.dart';
-import 'package:moatmat_uploader/Core/resources/sizes_resources.dart';
+ import 'package:moatmat_uploader/Core/resources/sizes_resources.dart';
 import 'package:moatmat_uploader/Core/validators/not_empty_v.dart';
 import 'package:moatmat_uploader/Core/widgets/fields/attachment_w.dart';
 import 'package:moatmat_uploader/Core/widgets/fields/drop_down_w.dart';
@@ -139,29 +137,29 @@ class _SetInformationViewState extends State<SetInformationView> {
                 },
               ),
               const SizedBox(height: SizesResources.s2),
-              DropDownWidget(
-                hintText: "الصف",
-                selectedItem: classs ?? classesLst[classesLst.length - 2],
-                items: classesLst,
-                validator: (p0) {
-                  return notEmptyValidator(text: p0);
-                },
-                onSaved: (p0) {
-                  classs = p0;
-                },
-              ),
-              const SizedBox(height: SizesResources.s2),
-              DropDownWidget(
-                hintText: "المادة",
-                selectedItem: material ?? materialsLst.first["name"],
-                items: materialsLst.map((e) => e["name"] as String).toList(),
-                validator: (p0) {
-                  return notEmptyValidator(text: p0);
-                },
-                onSaved: (p0) {
-                  material = p0;
-                },
-              ),
+              // DropDownWidget(
+              //   hintText: "الصف",
+              //   selectedItem: classs ?? classesLst[classesLst.length - 2],
+              //   items: classesLst,
+              //   validator: (p0) {
+              //     return notEmptyValidator(text: p0);
+              //   },
+              //   onSaved: (p0) {
+              //     classs = p0;
+              //   },
+              // ),
+              // const SizedBox(height: SizesResources.s2),
+              // DropDownWidget(
+              //   hintText: "المادة",
+              //   selectedItem: material ?? materialsLst.first["name"],
+              //   items: materialsLst.map((e) => e["name"] as String).toList(),
+              //   validator: (p0) {
+              //     return notEmptyValidator(text: p0);
+              //   },
+              //   onSaved: (p0) {
+              //     material = p0;
+              //   },
+              // ),
               if (!widget.isBank && widget.schools?.isNotEmpty != null) ...[
                 const SizedBox(height: SizesResources.s2),
                 DropDownWidget(
