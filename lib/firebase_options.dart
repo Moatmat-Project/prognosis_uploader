@@ -63,8 +63,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '359748080763',
     projectId: 'moatmat-project',
     storageBucket: 'moatmat-project.appspot.com',
-    androidClientId: '359748080763-eb7gipm9l7195anh18d8hhokn2vhsa1m.apps.googleusercontent.com',
-    iosClientId: '359748080763-skhd2a70pje59k6h29qhm7mabos8sidt.apps.googleusercontent.com',
-    iosBundleId: 'com.moatmat.uploader',
+    androidClientId:
+        '359748080763-eb7gipm9l7195anh18d8hhokn2vhsa1m.apps.googleusercontent.com',
+    iosClientId:
+        '359748080763-skhd2a70pje59k6h29qhm7mabos8sidt.apps.googleusercontent.com',
+    iosBundleId: 'com.prognosis.uploader',
   );
 }

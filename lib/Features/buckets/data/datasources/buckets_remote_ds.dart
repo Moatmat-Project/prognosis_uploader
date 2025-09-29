@@ -81,7 +81,7 @@ class BucketsRemoteDSImpl implements BucketsRemoteDS {
       final storage = client.storage.from(bucket);
       //
       String filePath = await setUpFilePath(
-        material: material,
+        material: "material",
         id: id,
         path: path,
         customName: name,
@@ -102,7 +102,7 @@ class BucketsRemoteDSImpl implements BucketsRemoteDS {
     String? customName,
   }) async {
     //
-    String folder1 = material.isEmpty ? "main" : trMaterialsLst[material];
+    String folder1 = material.isEmpty ? "main" : (trMaterialsLst[material] ?? "main");
     //
     String type = path.split("/").last.split(".").last;
     //

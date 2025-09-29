@@ -1,19 +1,20 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:moatmat_uploader/Core/errors/exceptions.dart';
 import 'package:moatmat_uploader/Features/auth/domain/entites/teacher_data.dart';
 import 'package:moatmat_uploader/Features/banks/domain/entities/bank_information.dart';
 import 'package:moatmat_uploader/Features/banks/domain/entities/bank_properties.dart';
 import 'package:moatmat_uploader/Features/banks/domain/usecases/update_bank_uc.dart';
 import 'package:moatmat_uploader/Features/banks/domain/usecases/upload_bank_uc.dart';
 import 'package:moatmat_uploader/Features/requests/domain/entities/request.dart';
+import 'package:moatmat_uploader/Features/school/domain/usecases/get_school_uc.dart';
+import 'package:moatmat_uploader/Features/school/domain/entities/school.dart';
 import '../../../../Core/injection/app_inj.dart';
 import '../../../../Core/services/questions_cash_s.dart';
 import '../../../../Features/banks/domain/entities/bank.dart';
 import '../../../../Features/requests/domain/usecases/send_request_uc.dart';
 import '../../../../Features/tests/domain/entities/question/question.dart';
-import '../../../tests/state/add_test/add_test_cubit.dart';
-
+ 
 part 'add_bank_state.dart';
 
 class AddBankCubit extends Cubit<AddBankState> {
@@ -69,7 +70,6 @@ class AddBankCubit extends Cubit<AddBankState> {
   // actions
   setBankInformation({required BankInformation information}) {
     this.information = information;
-
     emitBankProperties();
   }
 
@@ -197,8 +197,16 @@ class AddBankCubit extends Cubit<AddBankState> {
   }
 
   // views
-  emitBankInformation() {
-    emit(AddBankInformation(information: information));
+  Future<void> emitBankInformation() async {
+    final response = await locator<GetSchoolUc>().call();
+    response.fold(
+      (l) {
+        emit(AddBankError(exception: AnonException()));
+      },
+      (r) {
+        emit(AddBankInformation(information: information, schools: r));
+      },
+    );
   }
 
   emitBankProperties() {

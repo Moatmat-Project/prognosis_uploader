@@ -1,4 +1,4 @@
-package com.moatmat.uploader
+package com.prognosis.uploader
 
 import io.flutter.embedding.android.FlutterActivity
 

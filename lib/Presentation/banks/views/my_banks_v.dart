@@ -4,25 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moatmat_uploader/Presentation/banks/state/my_banks/my_banks_cubit.dart';
 import 'package:moatmat_uploader/Presentation/banks/views/bank_details_v.dart';
 import 'package:moatmat_uploader/Presentation/banks/widgets/bank_tile_w.dart';
-import '../../../Core/resources/sizes_resources.dart';
 import '../../../Core/widgets/appbar/contact_us_w.dart';
-import '../../../Core/widgets/appbar/report_icon_w.dart';
 
-class MyBanksView extends StatefulWidget {
-  const MyBanksView({super.key, required this.material});
-  final String material;
-  @override
-  State<MyBanksView> createState() => _MyBanksViewState();
-}
-
-class _MyBanksViewState extends State<MyBanksView> {
-  @override
-  void initState() {
-    context.read<MyBanksCubit>().init(material: widget.material);
-    super.initState();
-  }
-
-  @override
+class MyBanksView extends StatelessWidget {
+  const MyBanksView({super.key,  });
+   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -54,7 +40,7 @@ class _MyBanksViewState extends State<MyBanksView> {
                       ),
                     );
 
-                    if (mounted) {
+                    if (context.mounted) {
                       context.read<MyBanksCubit>().update();
                     }
                   },

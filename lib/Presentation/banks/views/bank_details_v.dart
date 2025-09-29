@@ -6,16 +6,11 @@ import 'package:moatmat_uploader/Features/banks/domain/entities/bank.dart';
 import 'package:moatmat_uploader/Presentation/banks/state/my_banks/my_banks_cubit.dart';
 import 'package:moatmat_uploader/Presentation/banks/views/add_bank_view.dart';
 
-import '../../../Core/functions/dialogs/add_item_to_folder.dart';
 import '../../../Core/functions/show_alert.dart';
 import '../../../Core/injection/app_inj.dart';
-import '../../../Core/resources/sizes_resources.dart';
-import '../../../Core/resources/spacing_resources.dart';
-import '../../../Core/services/folders_s.dart';
 import '../../../Core/widgets/toucheable_tile_widget.dart';
 import '../../../Features/auth/domain/entites/teacher_data.dart';
 import '../../folders/view/add_item_to_folder_v.dart';
-import '../../tests/widgets/purchases_informations_w.dart';
 import '../state/bank_information/bank_information_cubit.dart';
 
 class BankDetailsView extends StatefulWidget {

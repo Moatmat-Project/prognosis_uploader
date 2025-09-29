@@ -31,7 +31,7 @@ class BucketsRepositoryImpl implements BucketsRepository {
   }) async {
     try {
       var res = await dataSource.uploadFile(
-        material: material,
+        material: "material",
         id: id,
         path: path,
         bucket: bucket,

@@ -49,6 +49,8 @@ class _AddBankViewState extends State<AddBankView> {
               material: state.information?.material,
               password: null,
               teacher: state.information?.teacher,
+              schoolId: state.information?.schoolId,
+              schools: state.schools,
               period: null,
               price: state.information?.price,
               videos: state.information?.videos,
@@ -74,6 +76,7 @@ class _AddBankViewState extends State<AddBankView> {
                   var info = BankInformation(
                     title: title,
                     classs: classs,
+                    schoolId: schoolId,
                     material: material,
                     teacher: teacher,
                     price: price,

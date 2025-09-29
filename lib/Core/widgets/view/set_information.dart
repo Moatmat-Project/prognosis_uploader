@@ -1,9 +1,8 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
- import 'package:moatmat_uploader/Core/resources/sizes_resources.dart';
+import 'package:moatmat_uploader/Core/resources/sizes_resources.dart';
 import 'package:moatmat_uploader/Core/validators/not_empty_v.dart';
-import 'package:moatmat_uploader/Core/widgets/fields/attachment_w.dart';
 import 'package:moatmat_uploader/Core/widgets/fields/drop_down_w.dart';
 import 'package:moatmat_uploader/Core/widgets/fields/elevated_button_widget.dart';
 import 'package:moatmat_uploader/Core/widgets/fields/text_input_field.dart';
@@ -74,8 +73,8 @@ class SetInformationView extends StatefulWidget {
 class _SetInformationViewState extends State<SetInformationView> {
   final _formKey = GlobalKey<FormState>();
   String? title;
-  String? classs;
-  String? material;
+  String classs = "class";
+  String material = "material";
   String? teacher;
   String? schoolId;
   String? password;
@@ -90,8 +89,8 @@ class _SetInformationViewState extends State<SetInformationView> {
   @override
   void initState() {
     title = widget.title;
-    classs = widget.classs;
-    material = widget.material;
+    classs = widget.classs ?? "class";
+    material = widget.material ?? "material";
     teacher = widget.teacher;
     schoolId = widget.schoolId;
     password = widget.password;
@@ -109,7 +108,9 @@ class _SetInformationViewState extends State<SetInformationView> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: widget.isBank ? const Text("معلومات البنك الرئيسية") : const Text("معلومات الاختبار الرئيسية"),
+        title: widget.isBank
+            ? const Text("معلومات البنك الرئيسية")
+            : const Text("معلومات الاختبار الرئيسية"),
         actions: [
           IconButton(
             onPressed: () {
@@ -137,43 +138,34 @@ class _SetInformationViewState extends State<SetInformationView> {
                 },
               ),
               const SizedBox(height: SizesResources.s2),
-              // DropDownWidget(
-              //   hintText: "الصف",
-              //   selectedItem: classs ?? classesLst[classesLst.length - 2],
-              //   items: classesLst,
-              //   validator: (p0) {
-              //     return notEmptyValidator(text: p0);
-              //   },
-              //   onSaved: (p0) {
-              //     classs = p0;
-              //   },
-              // ),
-              // const SizedBox(height: SizesResources.s2),
-              // DropDownWidget(
-              //   hintText: "المادة",
-              //   selectedItem: material ?? materialsLst.first["name"],
-              //   items: materialsLst.map((e) => e["name"] as String).toList(),
-              //   validator: (p0) {
-              //     return notEmptyValidator(text: p0);
-              //   },
-              //   onSaved: (p0) {
-              //     material = p0;
-              //   },
-              // ),
-              if (!widget.isBank && widget.schools?.isNotEmpty != null) ...[
+              if (widget.schools?.isNotEmpty != null) ...[
                 const SizedBox(height: SizesResources.s2),
                 DropDownWidget(
-                  hintText: "المدرسة : ",
-                  selectedItem: widget.schools?.where(((e) => e.id.toString() == schoolId)).firstOrNull?.information.name ?? "غير محدد",
-                  items: ["غير محدد"] + widget.schools!.map((e) => e.information.name).toList(),
+                  hintText: "الجامعة : ",
+                  selectedItem: widget.schools
+                          ?.where(((e) => e.id.toString() == schoolId))
+                          .firstOrNull
+                          ?.information
+                          .name ??
+                      "غير محدد",
+                  items: ["غير محدد"] +
+                      widget.schools!.map((e) => e.information.name).toList(),
                   onChanged: (p0) {
                     setState(() {
-                      schoolId = widget.schools?.where((e) => e.information.name == p0).firstOrNull?.id.toString();
+                      schoolId = widget.schools
+                          ?.where((e) => e.information.name == p0)
+                          .firstOrNull
+                          ?.id
+                          .toString();
                     });
                   },
                   onSaved: (p0) {
                     setState(() {
-                      schoolId = widget.schools?.where((e) => e.information.name == p0).firstOrNull?.id.toString();
+                      schoolId = widget.schools
+                          ?.where((e) => e.information.name == p0)
+                          .firstOrNull
+                          ?.id
+                          .toString();
                     });
                   },
                 ),
@@ -278,7 +270,8 @@ class _SetInformationViewState extends State<SetInformationView> {
                         assets: videos?.map((e) => e.url).toList() ?? [],
                         onSave: (res) {
                           setState(() {
-                            videos = res.map((e) => VideoModel.fromUrl(e)).toList();
+                            videos =
+                                res.map((e) => VideoModel.fromUrl(e)).toList();
                           });
                         },
                       ),
@@ -359,8 +352,8 @@ class _SetInformationViewState extends State<SetInformationView> {
               _formKey.currentState?.save();
               widget.afterSet!(
                 title: title!,
-                classs: classs!,
-                material: material!,
+                classs: "classs!",
+                material: "material!",
                 schoolId: schoolId,
                 teacher: teacher!,
                 password: password,

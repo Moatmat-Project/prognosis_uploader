@@ -17,17 +17,30 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 @pragma('vm:entry-point')
 Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
- debugPrint('A background message was received in flutter_background_service plugin: ${message.messageId}');
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  debugPrint(
+      'A background message was received in flutter_background_service plugin: ${message.messageId}');
+  if (Firebase.apps.isEmpty) {
+    try {
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+    } on FirebaseException catch (e) {
+      // If the default app is already initialized, ignore the duplicate error.
+      if (e.code != 'duplicate-app') {
+        rethrow;
+      }
+    }
+  } else {
+    // Ensure we reference the default app if it's already initialized.
+    Firebase.app();
+  }
   debugPrint('Firebase initialized');
 
   await Supabase.initialize(
     url: SupabaseResources.url,
     anonKey: SupabaseResources.key,
   );
-  
+
   debugPrint('Supabase initialized');
 
   if (!locator.isRegistered<DisplayFirebaseNotificationUsecase>()) {
@@ -41,27 +54,38 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 @pragma('vm:entry-point')
 void onDidReceiveBackgroundNotificationResponse(
     NotificationResponse? response) async {
-    await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  if (Firebase.apps.isEmpty) {
+    try {
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+    } on FirebaseException catch (e) {
+      // If the default app is already initialized, ignore the duplicate error.
+      if (e.code != 'duplicate-app') {
+        rethrow;
+      }
+    }
+  } else {
+    // Ensure we reference the default app if it's already initialized.
+    Firebase.app();
+  }
   debugPrint('Firebase initialized');
 
   await Supabase.initialize(
     url: SupabaseResources.url,
     anonKey: SupabaseResources.key,
   );
-  
+
   debugPrint('Supabase initialized');
 
   if (!locator.isRegistered<DisplayFirebaseNotificationUsecase>()) {
     await initGetIt();
   }
 
-    locator<NotificationsBloc>().add(GetNotifications());
-    navigatorKey.currentState?.push(
-      MaterialPageRoute(builder: (_) => const NotificationsView()),
-    );
-
+  locator<NotificationsBloc>().add(GetNotifications());
+  navigatorKey.currentState?.push(
+    MaterialPageRoute(builder: (_) => const NotificationsView()),
+  );
 }
 
 class FirebaseMessagingHandlers {

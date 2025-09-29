@@ -101,7 +101,7 @@ class BanksRemoteDSImpl implements BanksRemoteDS {
         //
         final uploadRes = await locator<UploadFileUC>().call(
           bucket: "banks",
-          material: newBank.information.material,
+          material: newBank.information.teacher,
           id: newBank.id.toString(),
           path: video.url,
           name: video.url.split('/').last,
@@ -163,7 +163,7 @@ class BanksRemoteDSImpl implements BanksRemoteDS {
       //
       var res = await locator<UploadFileUC>().call(
         bucket: "banks",
-        material: newBank.information.material,
+        material:  newBank.information.teacher ?? "main",
         id: newBank.id.toString(),
         path: newBank.information.images![i],
       );
@@ -199,7 +199,7 @@ class BanksRemoteDSImpl implements BanksRemoteDS {
         var res = await locator<UploadFileUC>().call(
           id: newBank.id.toString(),
           bucket: "banks",
-          material: newBank.information.material,
+          material: newBank.information.teacher ?? "main",
           path: newBank.information.files![i],
           name: newBank.information.files![i].split('/').last,
         );
@@ -235,7 +235,7 @@ class BanksRemoteDSImpl implements BanksRemoteDS {
       if (q.video != null) {
         var res = await locator<UploadFileUC>().call(
           bucket: "banks",
-          material: newBank.information.material,
+          material: newBank.information.teacher ?? "main",
           id: newBank.id.toString(),
           path: q.video!,
         );
@@ -250,7 +250,7 @@ class BanksRemoteDSImpl implements BanksRemoteDS {
       if (q.explainImage != null) {
         var res = await locator<UploadFileUC>().call(
           bucket: "banks",
-          material: newBank.information.material,
+          material: newBank.information.teacher ?? "main",
           id: newBank.id.toString(),
           path: q.explainImage!,
         );
@@ -266,7 +266,7 @@ class BanksRemoteDSImpl implements BanksRemoteDS {
       if (q.image != null) {
         var res = await locator<UploadFileUC>().call(
           bucket: "banks",
-          material: newBank.information.material,
+          material: newBank.information.teacher ?? "main",
           id: newBank.id.toString(),
           path: q.image!,
         );
@@ -287,7 +287,7 @@ class BanksRemoteDSImpl implements BanksRemoteDS {
         if (a.image != null) {
           var res = await locator<UploadFileUC>().call(
             bucket: "banks",
-            material: newBank.information.material,
+            material: newBank.information.teacher ?? "main",
             id: newBank.id.toString(),
             path: a.image!,
           );
@@ -340,7 +340,7 @@ class BanksRemoteDSImpl implements BanksRemoteDS {
     //
     List<Bank> banks = [];
     //
-    final res = await client.from("banks").select().eq("information->>material", material);
+    final res = await client.from("banks").select();
     //
     banks = res.map((e) => BankModel.fromJson(e)).toList();
     //
