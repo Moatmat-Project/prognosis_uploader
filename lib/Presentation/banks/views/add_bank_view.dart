@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moatmat_uploader/Core/widgets/view/attach_file_v.dart';
 import 'package:moatmat_uploader/Core/widgets/view/set_questions_v.dart';
@@ -12,6 +13,8 @@ import '../../../Core/widgets/view/set_properties_v.dart';
 import '../../../Core/widgets/view/upload_done_v.dart';
 import '../../../Core/widgets/view/upload_error_v.dart';
 import '../../questions/view/add_question_v.dart';
+import '../../../Core/injection/app_inj.dart';
+import '../../../Features/auth/domain/entites/teacher_data.dart';
 
 class AddBankView extends StatefulWidget {
   const AddBankView({super.key, this.bank});
@@ -59,6 +62,7 @@ class _AddBankViewState extends State<AddBankView> {
               isBank: true,
               afterSet: ({
                 required classs,
+                required collegeId,
                 required files,
                 required images,
                 required material,
@@ -77,6 +81,7 @@ class _AddBankViewState extends State<AddBankView> {
                     title: title,
                     classs: classs,
                     schoolId: schoolId,
+                    collegeId: collegeId,
                     material: material,
                     teacher: teacher,
                     price: price,
@@ -129,7 +134,6 @@ class _AddBankViewState extends State<AddBankView> {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => AddQuestionView(
-                      isItBank: true,
                       result: (question) {
                         context.read<AddBankCubit>().setBankQuestions(
                               question: question,
@@ -146,7 +150,6 @@ class _AddBankViewState extends State<AddBankView> {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => AddQuestionView(
-                      isItBank: true,
                       question: question,
                       result: (question) {
                         context.read<AddBankCubit>().updateBankQuestions(
@@ -177,7 +180,9 @@ class _AddBankViewState extends State<AddBankView> {
             );
           } else if (state is AddBankLoading) {
             return Center(
-              child: state.details == "" || state.details == null ? const CupertinoActivityIndicator() : Text(state.details ?? ""),
+              child: state.details == "" || state.details == null
+                  ? const CupertinoActivityIndicator()
+                  : Text(state.details ?? ""),
             );
           } else if (state is AddBankPickFiles) {
             return AttachFileView(

@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moatmat_uploader/Core/resources/sizes_resources.dart';
 import 'package:moatmat_uploader/Core/widgets/view/set_questions_v.dart';
-import 'package:moatmat_uploader/Core/widgets/view/set_information.dart';
 import 'package:moatmat_uploader/Core/widgets/view/set_properties_v.dart';
 import 'package:moatmat_uploader/Features/tests/domain/entities/test/test.dart';
-import 'package:moatmat_uploader/Features/tests/domain/entities/test/test_information.dart';
 import 'package:moatmat_uploader/Features/tests/domain/entities/test/test_properties.dart';
 import 'package:moatmat_uploader/Presentation/tests/state/add_test/add_test_cubit.dart';
 import '../../../Core/widgets/view/attach_file_v.dart';
@@ -44,54 +42,55 @@ class _AddTestViewState extends State<AddTestView> {
       },
       builder: (context, state) {
         if (state is AddTestInformation) {
-          return SetInformationView(
-            title: state.information?.title,
-            classs: state.information?.classs,
-            material: state.information?.material,
-            password: state.information?.password,
-            teacher: state.information?.teacher,
-            schoolId: state.information?.schoolId,
-            schools: state.schools,
-            period: state.information?.period,
-            price: state.information?.price,
-            videos: state.information?.videos,
-            files: state.information?.files,
-            images: state.information?.images,
-            previous: state.information?.previous,
-            afterSet: ({
-              required classs,
-              required files,
-              required material,
-              required password,
-              required period,
-              previous,
-              required price,
-              required teacher,
-              required schoolId,
-              required title,
-              required videos,
-              required images,
-            }) {
-              var info = TestInformation(
-                title: title,
-                classs: classs,
-                material: material,
-                teacher: teacher,
-                schoolId: schoolId,
-                price: price,
-                password: password,
-                period: period,
-                videos: videos,
-                files: files,
-                previous: previous,
-                images: images,
-              );
-              //
-              context.read<AddTestCubit>().setTestInformation(
-                    information: info,
-                  );
-            },
-          );
+          return SizedBox();
+          // return SetInformationView(
+          //   title: state.information?.title,
+          //   classs: state.information?.classs,
+          //   material: state.information?.material,
+          //   password: state.information?.password,
+          //   teacher: state.information?.teacher,
+          //   schoolId: state.information?.schoolId,
+          //   schools: state.schools,
+          //   period: state.information?.period,
+          //   price: state.information?.price,
+          //   videos: state.information?.videos,
+          //   files: state.information?.files,
+          //   images: state.information?.images,
+          //   previous: state.information?.previous,
+          //   afterSet: ({
+          //     required classs,
+          //     required files,
+          //     required material,
+          //     required password,
+          //     required period,
+          //     previous,
+          //     required price,
+          //     required teacher,
+          //     required schoolId,
+          //     required title,
+          //     required videos,
+          //     required images,
+          //   }) {
+          //     var info = TestInformation(
+          //       title: title,
+          //       classs: classs,
+          //       material: material,
+          //       teacher: teacher,
+          //       schoolId: schoolId,
+          //       price: price,
+          //       password: password,
+          //       period: period,
+          //       videos: videos,
+          //       files: files,
+          //       previous: previous,
+          //       images: images,
+          //     );
+          //     //
+          //     context.read<AddTestCubit>().setTestInformation(
+          //           information: info,
+          //         );
+          //   },
+          // );
         } else if (state is AddTestProperties) {
           return SetPropertiesView(
             exploreAnswers: state.properties?.exploreAnswers ?? true,
@@ -138,7 +137,6 @@ class _AddTestViewState extends State<AddTestView> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => AddQuestionView(
-                    isItBank: false,
                     result: (question) {
                       context.read<AddTestCubit>().setTestQuestions(
                             question: question,
@@ -155,7 +153,6 @@ class _AddTestViewState extends State<AddTestView> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => AddQuestionView(
-                    isItBank: false,
                     question: question,
                     result: (question) {
                       context.read<AddTestCubit>().updateTestQuestions(

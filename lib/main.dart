@@ -4,6 +4,7 @@ import 'package:moatmat_uploader/Presentation/auth/state/auth_c/auth_cubit_cubit
 import 'package:moatmat_uploader/Presentation/banks/state/add_bank/add_bank_cubit.dart';
 import 'package:moatmat_uploader/Presentation/banks/state/my_banks/my_banks_cubit.dart';
 import 'package:moatmat_uploader/Presentation/banks/state/search_bank/search_bank_cubit.dart';
+import 'package:moatmat_uploader/Presentation/colleges/state/college_bloc/college_bloc.dart';
 import 'package:moatmat_uploader/Presentation/notifications/state/notifications_bloc/notifications_bloc.dart';
 import 'package:moatmat_uploader/Presentation/questions/state/cubit/create_question_cubit.dart';
 import 'package:moatmat_uploader/Presentation/students/state/my_students/my_students_cubit.dart';
@@ -77,6 +78,7 @@ void main() async {
         BlocProvider(create: (context) => QuestionsPickerCubit()),
         BlocProvider(create: (context) => AddToFolderCubit()),
         BlocProvider(create: (context) => PickTeacherItemCubit()),
+        BlocProvider(create: (context) => locator<CollegeBloc>()),
         BlocProvider(
             create: (context) =>
                 locator<NotificationsBloc>()..add(GetNotifications())),

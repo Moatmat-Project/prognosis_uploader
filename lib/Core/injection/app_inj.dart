@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:moatmat_uploader/Core/injection/banks_inj.dart';
 import 'package:moatmat_uploader/Core/injection/buckets_inj.dart';
+import 'package:moatmat_uploader/Core/injection/college_inj.dart';
 import 'package:moatmat_uploader/Core/injection/groups_inj.dart';
 import 'package:moatmat_uploader/Core/injection/notifications_inj.dart';
 import 'package:moatmat_uploader/Core/injection/purchases_inj.dart';
@@ -46,4 +47,6 @@ initGetIt() async {
   injectUpdate();
   //
   injectSchools();
+  //
+  injectColleges();
 }

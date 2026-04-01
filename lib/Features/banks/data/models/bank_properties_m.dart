@@ -1,4 +1,5 @@
 import 'package:moatmat_uploader/Features/banks/domain/entities/bank_properties.dart';
+
 class BankPropertiesModel extends BankProperties {
   BankPropertiesModel({
     required super.visible,
